@@ -1,21 +1,30 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import { scrapeInvoice } from './scripts/invoiceScrape'
 
 function App() {
   const [count, setCount] = useState(0)
   const [msg, setMsg] = useState<any>();
 
+  const scrapePage = async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true});
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id! },
+      func: scrapeInvoice,
+    });
+  }
+
+  
+
   const clickHandler = () => {
-    setCount((count) => count + 1);
+    // setCount((count) => count + 1);
     chrome.runtime.sendMessage({ action: 'openNewTab' }, (response) => {
       console.log('msg was sent');
     });
-    // chrome.tabs.create({
-    //     url: 'http://localhost:3000/test'
-    // }, (tab) => {
-    // });
+    scrapePage();
   }
+
 
   return (
     <div className="App">

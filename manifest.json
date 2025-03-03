@@ -2,8 +2,8 @@
     "manifest_version": 3,
     "name": "CRXJS React Vite Example",
     "version": "1.0.0",
-    "permissions": ["scripting", "tabs", "windows"],
-    "host_permissions": ["http://*/*", "https://*/*"],
+    "permissions": ["scripting", "tabs", "activeTab", "windows", "storage"],
+    "host_permissions": ["<all_urls>"],
     "action": { 
         "default_popup": "index.html"
     },
@@ -16,5 +16,9 @@
             "resources": [ "icons/*.png"],
             "matches": []
         }
-    ]
+    ],
+    "chrome_url_overrides": {
+      "newtab": "newtab.html"
+    }
 }
+

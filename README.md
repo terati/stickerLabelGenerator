@@ -5,3 +5,14 @@
 // "chrome_url_overrides": {
     //   "newtab": "newtab.html"
     // },
+
+
+
+  // "http://*/*", "https://*/*", 
+
+  "content_scripts": [
+      {
+        "js": ["src/scripts/invoiceScrape.ts"],
+        "matches": []
+      }
+    ],
