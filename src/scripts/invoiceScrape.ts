@@ -41,6 +41,9 @@ export const scrapeInvoice = () => {
           rows.push(row);
       }
       console.log(rows);
-      // chrome.runtime.sendMessage({ action: "sendDataToNewTab", data: rows });
+      setTimeout(() => {
+        chrome.runtime.sendMessage({ action: "sendDataToNewTab", data: rows });
+      }, 1000);
+      
   }
 }
