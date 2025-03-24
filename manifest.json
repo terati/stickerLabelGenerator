@@ -16,9 +16,6 @@
             "resources": [ "icons/*.png"],
             "matches": []
         }
-    ],
-    "chrome_url_overrides": {
-      "newtab": "newtab.html"
-    }
+    ]
 }
 

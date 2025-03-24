@@ -27,7 +27,9 @@ export const scrapeInvoice = () => {
   const rowElements = document.querySelectorAll('[data-hook="order_details_line_item_row"]');
   const rows:NullableRowInterface[] = [];
   if (rowElements) {
+      
       for (let rowElement of rowElements) {
+        console.log(rowElement)
           let row:NullableRowInterface = { name: '', ndc: '', manufacturer: '', price: ''};
           let tmp = rowElement.children[1];
           let nameTmp = '';
@@ -37,7 +39,12 @@ export const scrapeInvoice = () => {
           row.name = cleanString(nameTmp.trim().replace(/\Mint\)/g, ''));
           row.ndc = cleanString(rowElement.children[2].textContent);
           row.manufacturer = cleanString(rowElement.children[3].textContent);
-          row.price = cleanString(rowElement.children[5].textContent);
+          let price = rowElement.querySelector(".price");
+          // console.log("price: "+price?.textContent);
+
+          // row.price = cleanString(rowElement.children[5].textContent);
+          row.price = cleanString(price?.textContent);
+          console.log(row.price);
           rows.push(row);
       }
       console.log(rows);
