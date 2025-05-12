@@ -43,7 +43,7 @@ export const scrapeInvoice = () => {
           // console.log("price: "+price?.textContent);
 
           // row.price = cleanString(rowElement.children[5].textContent);
-          row.price = cleanString(price?.textContent);
+          // row.price = cleanString(price?.textContent);s
           console.log(row.price);
           rows.push(row);
       }

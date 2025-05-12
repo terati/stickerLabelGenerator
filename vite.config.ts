@@ -17,7 +17,10 @@ export default defineConfig({
       input: {
         main: "index.html",
         newtab: "newtab.html",
-        invoiceScrape: "src/scripts/invoiceScrape.ts"
+        autoAnalyze: "src/scripts/autoAnalyze.ts"
+        // invoiceScrape: "src/scripts/invoiceScrape.ts"
+        
+        
       },
       output: {
         entryFileNames: '[name].js',
