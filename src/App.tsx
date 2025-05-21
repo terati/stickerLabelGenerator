@@ -11,8 +11,14 @@ function App() {
   const [enabled, setEnabled] = useState<boolean>(false); 
 
   const toggleScript = () => {
+    if (enabled) {
+      chrome.runtime.sendMessage({ action: "endPoll" });
+    } else {
+      chrome.runtime.sendMessage({ action: "startPoll" });
+    }
     setEnabled(prev => !prev);
-    processMarketplace();
+    
+    // processMarketplace();
     // console.log("test");
     // chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     //   console.log(tabs);
@@ -33,18 +39,19 @@ function App() {
   // }
 
   const processMarketplace = async () => {
-    let [tab] = await chrome.tabs.query({ active: true });
-    console.log("processing: "+tab.id);
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id! },
-      func: autoAnalyze,
-    }, (results) => {
-      if (chrome.runtime.lastError) {
-        console.error("injection failed: ", chrome.runtime.lastError);
-      } else {
-        console.log("injection succeeded: ", results);
-      }
-    });
+    // chrome.runtime.sendMessage({ action: "" })
+    // let [tab] = await chrome.tabs.query({ active: true });
+    // console.log("processing: "+tab.id);
+    // chrome.scripting.executeScript({
+    //   target: { tabId: tab.id! },
+    //   func: autoAnalyze,
+    // }, (results) => {
+    //   if (chrome.runtime.lastError) {
+    //     console.error("injection failed: ", chrome.runtime.lastError);
+    //   } else {
+    //     console.log("injection succeeded: ", results);
+    //   }
+    // });
   }
 
 
@@ -53,7 +60,7 @@ function App() {
     // chrome.runtime.sendMessage({ action: 'openNewTab' }, (response) => {
     //   console.log('msg was sent');
     // });
-    processMarketplace();
+    // processMarketplace();
   }
 
 
