@@ -32,8 +32,14 @@ export function autoAnalyze() {
           console.log(ndcNumber + "_" + className);
           console.log("clicking");
           if (addToCartButton && 
-            (ndcNumber=="00003089321" || ndcNumber=="00003089421") // eliquis
-          ) {
+            (ndcNumber=="00003089321" || ndcNumber=="00003089421" || // eliquis
+              ndcNumber=="50458057930" || ndcNumber=="50458057830" || // xarelto 15 and 20
+              ndcNumber=="00597014030" || ndcNumber=="00597014090" || // tradjenta
+              ndcNumber=="00597015330" || ndcNumber=="00597015390" || //jardiance 25
+              ndcNumber=="00597015230" || ndcNumber=="00597015290" // jardiance 10
+              // || ndcNumber=="73521003002" // test for tryvaya
+            )
+            ) {
             addToCartButton.click();
           }
         }

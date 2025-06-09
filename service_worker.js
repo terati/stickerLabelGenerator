@@ -17,7 +17,7 @@ const processMarketplace = async () => {
       }
     });
   }
-  const delay = Math.random() * (20_000-5000) + 1000;
+  const delay = Math.random() * (10_000-5000) + 1000;
   setTimeout(processMarketplace, delay);
   loop();
 }
