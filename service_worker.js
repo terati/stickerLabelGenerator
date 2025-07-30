@@ -1,11 +1,23 @@
 import { autoAnalyze } from './src/scripts/autoAnalyze';
-let pollFlagActive = false;
 
 const processMarketplace = async () => {
+  let res = await chrome.storage.local.get("enabled");
+  if (!res.enabled) return;
+  // console.log(enabled);
+  const now = new Date();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  const day = now.getDay();
+  if (day==0) {
+    chrome.storage.local.set({"enabled": false});
+    return;
+  }
+  // if (hour<=10 && minute<22) return;
+  // if (hour>=12 && minute>18) return;
   const loop = async () => {
-    if (!pollFlagActive) return;
-    let [tab] = await chrome.tabs.query({ active: true });
-    console.log("processing: "+tab.id);
+    let [tab] = await chrome.tabs.query({ active: true  });
+    // , currentWindow: true
+    // console.log("processing: "+tab.id);
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: autoAnalyze,
@@ -17,17 +29,17 @@ const processMarketplace = async () => {
       }
     });
   }
-  const delay = Math.random() * (10_000-5000) + 1000;
+  const delay = Math.random() * (15_000-10_000) + 1000;
   setTimeout(processMarketplace, delay);
   loop();
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  // console.log("hite");
   if (message.action==="startPoll") {
-    pollFlagActive = true;
     processMarketplace();
   } else if (message.action==="endPoll") {
-    pollFlagActive = false;
+    chrome.storage.local.set({"enabled": false});
   }
 })
 

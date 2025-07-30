@@ -10,7 +10,6 @@
     "background": {
       "service_worker": "service_worker.js"
     },
-    
     "web_accessible_resources": [
         {
             "resources": [ "icons/*.png"],

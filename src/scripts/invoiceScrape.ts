@@ -15,7 +15,7 @@ type NullableRowInterface = Nullable<RowInterface>;
 
 
 export const scrapeInvoice = () => {
-  // document.body.style.backgroundColor = 'orange';
+  document.body.style.backgroundColor = 'black';
   // console.log("attempting scrape");
   const cleanString = (s: string | null) => {
     if (s==null) return "";

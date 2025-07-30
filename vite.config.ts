@@ -6,7 +6,7 @@ import manifest from './manifest.json'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    port: 3000,
+    port: 3001,
   },
   plugins: [
     react(),
@@ -18,6 +18,7 @@ export default defineConfig({
         main: "index.html",
         newtab: "newtab.html",
         autoAnalyze: "src/scripts/autoAnalyze.ts"
+        
         // invoiceScrape: "src/scripts/invoiceScrape.ts"
         
         

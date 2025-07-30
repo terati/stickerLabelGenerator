@@ -2,21 +2,21 @@ import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { scrapeInvoice } from './scripts/invoiceScrape'
-import { autoAnalyze } from './scripts/autoAnalyze'
 
 function App() {
   const [count, setCount] = useState(0)
   const [msg, setMsg] = useState<any>();
 
-  const [enabled, setEnabled] = useState<boolean>(false); 
+  // const [enabled, setEnabled] = useState<boolean>(await chrome.storage.local.get("enabled");); 
 
   const toggleScript = () => {
-    if (enabled) {
-      chrome.runtime.sendMessage({ action: "endPoll" });
-    } else {
-      chrome.runtime.sendMessage({ action: "startPoll" });
-    }
-    setEnabled(prev => !prev);
+
+    // if (enabled) {
+    //   chrome.runtime.sendMessage({ action: "endPoll" });
+    // } else {
+    //   chrome.runtime.sendMessage({ action: "startPoll" });
+    // }
+    // setEnabled(prev => !prev);
     
     // processMarketplace();
     // console.log("test");
@@ -63,14 +63,34 @@ function App() {
     // processMarketplace();
   }
 
+  const stopPoll = async () => {
+    chrome.storage.local.set({"enabled": false});
+    chrome.runtime.sendMessage({ action: "endPoll" });
+  }
+
+  const startPoll = async () => {
+    let res = await chrome.storage.local.get("enabled");
+    // console.log(res.enabled); 
+    chrome.storage.local.set({"enabled": true});
+      chrome.runtime.sendMessage({ action: "startPoll" });
+    if (res.enabled) {
+      // prevent retrigger 
+    } else {
+      // chrome.storage.local.set({"enabled": true});
+      // chrome.runtime.sendMessage({ action: "startPoll" });
+    }
+    
+  }
+
 
   return (
     <div className="App">
       <div> 
-        <label> 
-          Toggle:
-          <input type="checkbox" checked={enabled} onChange={toggleScript} />
-        </label>
+        {/* <label>  */}
+          {/* <input type="checkbox" checked={enabled} onChange={toggleScript} /> */}
+          <button onClick={startPoll}> CONTINUE </button>
+          <button onClick={stopPoll}> STOP </button>
+        {/* </label> */}
       </div>
     </div>
   )
