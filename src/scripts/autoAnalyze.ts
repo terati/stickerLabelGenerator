@@ -87,32 +87,53 @@ export function autoAnalyze() {
         } else {
           items.push(ndcNumber + " " + className);
           const lastTd = row.querySelector('td:last-child');
+          const percentDiscountStr: string | undefined = row.querySelector('td:nth-child(6)')?.innerHTML?.toString() || undefined;
+          const percentDiscount = (percentDiscountStr) ? parseInt(percentDiscountStr.match(/\d+/)[0], 10) : 100;
+          console.log(percentDiscount);
           const addToCartButton = lastTd?.querySelector('button');
           // console.log(ndcNumber + "_" + className);
           // console.log("clicking");
           if (addToCartButton && 
-            (ndcNumber=="00003089321" || ndcNumber=="00003089421" || // eliquis
-              ndcNumber=="50458057930" || ndcNumber=="50458057830" || // xarelto 15 and 20
-              ndcNumber=="00597014030" || ndcNumber=="00597014090" || // tradjenta
-              ndcNumber=="00597015330" || ndcNumber=="00597015390" || //jardiance 25
-              ndcNumber=="00597015230" || ndcNumber=="00597015290" || // jardiance 10
-              // ndcNumber=="00169431430" || // rybelsus 14
-              // ndcNumber=="00169430730" || // rybelsus 7
+            ( (ndcNumber=="00003089321" && percentDiscount>=9)||  // eliquis 2.5
+              (ndcNumber=="00003089421" && percentDiscount>=9) || // eliquis 5
+              (ndcNumber=="50458057930" && percentDiscount>=9) || // xarelto 15 
+              (ndcNumber=="50458057830" && percentDiscount>=9)|| // xarelto 20
+              (ndcNumber=="00597014030" && percentDiscount>=11) || // tradjenta 30cnt
+              (ndcNumber=="00597014090" && percentDiscount>=11) || // tradjenta 90cnt
+              (ndcNumber=="00597015330" && percentDiscount>=15) || // jardiance 25 30cnt
+              (ndcNumber=="00597015390" && percentDiscount>=15) || //jardiance 25 90cnt
+              (ndcNumber=="00597015230" && percentDiscount>=15) || // jardiance 10 30cnt
+              (ndcNumber=="00597015290" && percentDiscount>=15) || // jardiance 10 90cnt
+              (ndcNumber=="00169431430" && percentDiscount>=20) || // rybelsus 14
+              (ndcNumber=="00169430730" && percentDiscount>=20) || // rybelsus 7
               
-              // ndcNumber=="00456120330" || // linzess 72
-              // ndcNumber=="00456120130" || // linzess 145
-              // ndcNumber=="00456120230" || // linzess 290
+              (ndcNumber=="00456120330" && percentDiscount>=20) || // linzess 72
+              (ndcNumber=="00456120130" && percentDiscount>=20) || // linzess 145
+              (ndcNumber=="00456120230" && percentDiscount>=20) || // linzess 290
 
-              ndcNumber=="00469260130" || ndcNumber=="00469260190" || // myrbetriq 25
-              ndcNumber=="00023320503" || // lumigan
-              // ndcNumber=="00173085910" || // breo 100
-              // ndcNumber=="00173088210" || //breo 200
-              // ndcNumber=="00006027754" || ndcNumber=="00006027731" ||  // januvia 100
-              // ndcNumber=="00023916360" || // restasis
+              (ndcNumber=="00469260130" && percentDiscount>=15) || // myrbetriq 25 30cnt
+              (ndcNumber=="00469260190" && percentDiscount>=15) || // myrbetriq 25 90cnt
+              (ndcNumber=="00023320503" && percentDiscount>=20) ||// lumigan
+              (ndcNumber=="00173085910" && percentDiscount>=18) || // breo 100
+              (ndcNumber=="00173088210" && percentDiscount>=18) || // breo 200
+
+              (ndcNumber=="00006027754" && percentDiscount>=15) || // januvia 100 30cnt
+              (ndcNumber=="00006027731" && percentDiscount>=15) || // januvia 100 90cnt
+              (ndcNumber=="00023916360" && percentDiscount>=18) || // restasis
               // ndcNumber=="00456120230"
-              // ndcNumber=="00310620530" || ndcNumber=="00310620590"  // farxiga 5
-              
-              ndcNumber=="00078069661" || ndcNumber=="00078069620" // entresto 96/103
+              (ndcNumber=="00310620530" && percentDiscount>=15) || // farxiga 5 30cnt
+              (ndcNumber=="00310620590" && percentDiscount>=15) || // farxiga 5 90cnt
+              (ndcNumber=="00310621030" && percentDiscount>=15) || // farxiga 10 30cnt
+              (ndcNumber=="00310621000" && percentDiscount>=15) || // farxiga 10 90cnt
+
+              (ndcNumber=="00078091112" && percentDiscount>=20) || // xiidra
+              // ndcNumber=="00078077720"  //entresto 49/51
+              (ndcNumber=="00078077720" && percentDiscount>=15) || // entresto 49/51
+              // ndcNumber=="00078069661" || ndcNumber=="00078069620" // entresto 96/103
+              // ndcNumber=="24208037705"  // miebo
+              // ndcNumber=="52937000120" // vacepa
+              ndcNumber=="61958230101" || // vemlidy 25
+              (ndcNumber=="73336007530" && percentDiscount>=18)// gemtesa
             )
             ) {
             addToCartButton.click();
@@ -129,6 +150,9 @@ export function autoAnalyze() {
 
   async function refreshPage() {
     // document.body.style.backgroundColor = 'green';
+
+    
+
     console.log("analyzing");
     let res = await chrome.storage.local.get("enabled");
     // console.log(enabled); 
@@ -164,5 +188,3 @@ export function autoAnalyze() {
   // }
 
 }
-
-
