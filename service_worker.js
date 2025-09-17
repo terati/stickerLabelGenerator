@@ -18,6 +18,7 @@ const processMarketplace = async () => {
     let [tab] = await chrome.tabs.query({ active: true  });
     // , currentWindow: true
     // console.log("processing: "+tab.id);
+    if (!tab.url || !tab.url.startsWith("https://mrx.matchrx.com")) return;
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: autoAnalyze,

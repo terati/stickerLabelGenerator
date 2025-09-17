@@ -40,7 +40,7 @@ export function autoAnalyze() {
         cdiv.style.margin = '1rem 4rem';
         cdiv.style.borderRadius = '10px';
         cdiv.textContent = 'Test Content';
-        // document.body.appendChild(cdiv);
+        document.body.appendChild(cdiv);
       } else {
         tdiv.innerHTML = thtml;
         let randomNum = Math.floor(Math.random()*10);
@@ -68,7 +68,7 @@ export function autoAnalyze() {
 
   function scrapeTable() {
 
-    // refreshInterface();
+    refreshInterface();
 
     const tbody = document.querySelector('tbody');
     if (tbody) {
@@ -114,8 +114,8 @@ export function autoAnalyze() {
               (ndcNumber=="00469260130" && percentDiscount>=15) || // myrbetriq 25 30cnt
               (ndcNumber=="00469260190" && percentDiscount>=15) || // myrbetriq 25 90cnt
               (ndcNumber=="00023320503" && percentDiscount>=20) ||// lumigan
-              (ndcNumber=="00173085910" && percentDiscount>=18) || // breo 100
-              (ndcNumber=="00173088210" && percentDiscount>=18) || // breo 200
+              (ndcNumber=="00173085910" && percentDiscount>=12) || // breo 100
+              (ndcNumber=="00173088210" && percentDiscount>=12) || // breo 200
 
               (ndcNumber=="00006027754" && percentDiscount>=15) || // januvia 100 30cnt
               (ndcNumber=="00006027731" && percentDiscount>=15) || // januvia 100 90cnt
@@ -123,8 +123,8 @@ export function autoAnalyze() {
               // ndcNumber=="00456120230"
               (ndcNumber=="00310620530" && percentDiscount>=15) || // farxiga 5 30cnt
               (ndcNumber=="00310620590" && percentDiscount>=15) || // farxiga 5 90cnt
-              (ndcNumber=="00310621030" && percentDiscount>=15) || // farxiga 10 30cnt
-              (ndcNumber=="00310621000" && percentDiscount>=15) || // farxiga 10 90cnt
+              (ndcNumber=="00310621030" && percentDiscount>=12) || // farxiga 10 30cnt
+              (ndcNumber=="00310621000" && percentDiscount>=12) || // farxiga 10 90cnt
 
               (ndcNumber=="00078091112" && percentDiscount>=20) || // xiidra
               // ndcNumber=="00078077720"  //entresto 49/51
@@ -132,8 +132,10 @@ export function autoAnalyze() {
               // ndcNumber=="00078069661" || ndcNumber=="00078069620" // entresto 96/103
               // ndcNumber=="24208037705"  // miebo
               // ndcNumber=="52937000120" // vacepa
+              // anoro 
               ndcNumber=="61958230101" || // vemlidy 25
-              (ndcNumber=="73336007530" && percentDiscount>=18)// gemtesa
+              ndcNumber=="00006008061" || // janumet XR 50-1000
+              (ndcNumber=="73336007530" && percentDiscount>=15)// gemtesa
             )
             ) {
             addToCartButton.click();
@@ -166,7 +168,7 @@ export function autoAnalyze() {
 
     // refreshInterface();
   }
-  refreshPage();
+  // refreshPage();
   scrapeTable();
   
 
