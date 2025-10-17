@@ -1,12 +1,11 @@
 .leftSidebar {
-  width: 600px;
-  max-width: 600px;
-  /* height: 100%; */
+  width: 500px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex-grow: 1;
-  background-color: green;
+  background-color: black;
+  padding: 1rem;
 }
 .storedData {
   display: flex;

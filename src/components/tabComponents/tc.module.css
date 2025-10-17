@@ -32,5 +32,13 @@ html, body {
 .content {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  background-color: grey;
+}
+
+.right {
+  display: flex;
+  flex-grow: 1;
+  /* background-color: transparent; */
+  justify-content: center;
+  align-items: center;
 }
