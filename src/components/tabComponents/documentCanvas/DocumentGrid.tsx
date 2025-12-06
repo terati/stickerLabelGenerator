@@ -2,9 +2,6 @@ import * as React from 'react';
 import { Rect, Text } from 'react-konva';
 
 const DocumentGrid = (props: any) => {
-<<<<<<< HEAD
-  return <></>
-=======
   const {
     description,
     ncols,
@@ -125,7 +122,6 @@ const DocumentGrid = (props: any) => {
       {generateGrid(test)}
     </>
   )
->>>>>>> 9dfb4df (somewhat working single page for cardinal)
 }
 
 export default DocumentGrid;

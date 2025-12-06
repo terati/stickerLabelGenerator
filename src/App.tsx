@@ -30,13 +30,15 @@ function App() {
     // })
   }
 
-  // const scrapePage = async () => {
-  //   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true});
-  //   chrome.scripting.executeScript({
-  //     target: { tabId: tab.id! },
-  //     func: scrapeInvoice,
-  //   });
-  // }
+  const scrapePage = async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true});
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id! },
+      func: scrapeInvoice,
+    });
+    const url = chrome.runtime.getURL('newtab.html');
+    chrome.tabs.create({ url });
+  }
 
   const processMarketplace = async () => {
     // chrome.runtime.sendMessage({ action: "" })
@@ -88,8 +90,8 @@ function App() {
       <div> 
         {/* <label>  */}
           {/* <input type="checkbox" checked={enabled} onChange={toggleScript} /> */}
-          <button onClick={startPoll}> CONTINUE </button>
-          <button onClick={stopPoll}> STOP </button>
+          <button onClick={scrapePage}> Scrape Page </button>
+          {/* <button onClick={stopPoll}> STOP </button> */}
         {/* </label> */}
       </div>
     </div>

@@ -12,10 +12,6 @@ type DataRowType = {
 
 type InvoiceData = DataRowType[];
 
-<<<<<<< HEAD
-const LeftSidebar = () => {
-  return <></>
-=======
 const LeftSidebar = (props) => {
   const {
     storedData,
@@ -83,7 +79,6 @@ const LeftSidebar = (props) => {
       </div>
     </div>
   )
->>>>>>> 9dfb4df (somewhat working single page for cardinal)
 }
 
 export default LeftSidebar;

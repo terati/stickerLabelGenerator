@@ -48,12 +48,6 @@ export const scrapeInvoice = () => {
         let price = rowElement.querySelector(".price");
         // console.log("price: "+price?.textContent);
 
-<<<<<<< HEAD
-          // row.price = cleanString(rowElement.children[5].textContent);
-          // row.price = cleanString(price?.textContent);s
-          console.log(row.price);
-          rows.push(row);
-=======
         // row.price = cleanString(rowElement.children[5].textContent);
         row.price = cleanString(price?.textContent).substring(1);
         // console.log(row.price);
@@ -61,7 +55,6 @@ export const scrapeInvoice = () => {
         row.qty = ''+Math.min(8, parseInt(qty));
         console.log(row.qty)
         rows.push(row);
->>>>>>> 9dfb4df (somewhat working single page for cardinal)
       }
       console.log(rows);
       setTimeout(() => {

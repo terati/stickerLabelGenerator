@@ -14,10 +14,6 @@ type DataRowType = {
 type InvoiceData = DataRowType[];
 
 const Tab = () => {
-<<<<<<< HEAD
-  return <>
-  </>
-=======
   // const [data, setData] = React.useState<InvoiceData>();
   const [nrows, setNrows] = React.useState<number>();
   const [ncols, setNcols] = React.useState<number>();
@@ -73,7 +69,6 @@ const Tab = () => {
       
     </div>
   )
->>>>>>> 9dfb4df (somewhat working single page for cardinal)
 }
 
 export default Tab; 

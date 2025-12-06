@@ -12,10 +12,6 @@ interface DocumentCanvasInterface {
 
 }
 
-<<<<<<< HEAD
-const DocumentCanvas = () => {
-  return <></>
-=======
 const DocumentCanvas = (props: DocumentCanvasInterface) => {
   const {
     description,
@@ -146,7 +142,6 @@ const DocumentCanvas = (props: DocumentCanvasInterface) => {
       </Stage>
     </>
   )
->>>>>>> 9dfb4df (somewhat working single page for cardinal)
 }
 
 export default DocumentCanvas;
